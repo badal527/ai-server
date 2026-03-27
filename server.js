@@ -4,35 +4,32 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// ROOT (IMPORTANT)
 app.get("/", (req, res) => {
   res.send("AI Server Running 🚀");
 });
 
-// TEST ROUTE
-app.get("/", (req, res) => {
-  res.send("AI Server Running 🚀");
-});
-
-// GENERATE ROUTE
+// API
 app.post("/generate", (req, res) => {
   const { topic } = req.body;
 
-  let text = `
-  ${topic}
+  res.json({
+    result: `Assignment on ${topic}
 
-  Introduction:
-  ${topic} is an important topic in modern world.
+Introduction:
+${topic} is important in modern world.
 
-  Body:
-  It plays a major role in our daily life and development.
+Body:
+It plays a key role in development.
 
-  Conclusion:
-  ${topic} will continue to grow in future.
-  `;
-
-  res.json({ result: text });
+Conclusion:
+${topic} has a bright future.`
+  });
 });
 
-app.listen(3000, () => {
-  console.log("Server running");
+// PORT FIX (VERY IMPORTANT FOR RENDER)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
 });
