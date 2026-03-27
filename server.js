@@ -4,6 +4,9 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("AI Server Running 🚀");
+});
 
 // TEST ROUTE
 app.get("/", (req, res) => {
